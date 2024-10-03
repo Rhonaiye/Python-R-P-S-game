@@ -1,30 +1,32 @@
-import random
+import random 
+ran_Num = random.randint(0, 2)
+
+choices = ['rock', 'paper', 'scissors']
+comp_choice = choices[ran_Num]
+print(comp_choice)
 
 try:
-    user_range = int(input('Input a number higher than 50: '))
-
-    # Validate the input range
-    if user_range <= 50:
-        print('Please input a number higher than 50.')
-    else:
-        print(f'Guess a number between 1 and {user_range}')
-        ranNum = random.randint(1, user_range)  # Generate a random number between 1 and user_range
+    user_choice = str(input('choose between rock, paper & scissors: ')).lower()
+    
+    if user_choice not in choices:
+        raise ValueError('input a valid option')
+    
+    
+    if user_choice == 'scissors' and comp_choice == 'paper':
+        print(f'you chose {user_choice} while computer chose {comp_choice}, you win')
         
-        user_guess = int(input('Input your guess: '))
-
-        # Main guessing loop
-        while user_guess != ranNum:
-            if user_guess < ranNum:
-                print('Your guess was less than the number.')
-            elif user_guess > ranNum:
-                print('Your guess was higher than the number.')
-
-            print('Try again, you were close!')
-            user_guess = int(input('Input your guess: '))
-
-        # When the guess is correct
-        print('You guessed correctly!')
-
-except ValueError:
-    print('Please enter a valid number.')
-
+    elif user_choice == 'rock' and comp_choice == 'scissors':
+        print(f'you chose {user_choice} while computer chose {comp_choice}, you win')
+    
+    elif user_choice == 'paper' and comp_choice == 'rock':
+        print(f'you chose {user_choice} while computer chose {comp_choice}, you win')
+    
+    elif user_choice == comp_choice:
+        print(f'you chose {user_choice} while computer chose {comp_choice}, so its a draw')
+    
+    else:
+        print(f'you chose {user_choice} while computer chose {comp_choice}, computer wins')
+    
+        
+except ValueError as e:
+    print(e)
